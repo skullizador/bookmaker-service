@@ -10,6 +10,12 @@
 namespace BookmakerService.Presentation.WebAPI
 {
     using System.Reflection;
+    using BookmakerService.Domain.Configuration;
+    using BookmakerService.Infrastructure;
+    using BookmakerService.Infrastructure.Configuration;
+    using BookmakerService.Presentation.WebAPI.Configuration;
+    using BookmakerService.Presentation.WebAPI.Exceptions.Middleware;
+    using BookmakerService.Presentation.WebAPI.Validation;
     using FluentValidation.AspNetCore;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
@@ -55,7 +61,7 @@ namespace BookmakerService.Presentation.WebAPI
 
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Arbitrage Finder Service API V1");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Bookmaker Service API V1");
             });
 
             app.UseRouting();
@@ -72,7 +78,7 @@ namespace BookmakerService.Presentation.WebAPI
         /// <param name="services">The services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ArbitrageFinderDBContext>(options => options.UseLazyLoadingProxies(), ServiceLifetime.Scoped);
+            services.AddDbContext<BookmakerServiceDBContext>(options => options.UseLazyLoadingProxies(), ServiceLifetime.Scoped);
 
             services.RegisterDomainServices();
             services.RegisterInfrastructureServices();
@@ -108,7 +114,7 @@ namespace BookmakerService.Presentation.WebAPI
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Arbitrage Finder API",
+                    Title = "Bookmaker Service API",
                 });
             });
         }
@@ -121,7 +127,7 @@ namespace BookmakerService.Presentation.WebAPI
         {
             using var scope = app.Services.CreateScope();
 
-            var context = scope.ServiceProvider.GetRequiredService<ArbitrageFinderDBContext>();
+            var context = scope.ServiceProvider.GetRequiredService<BookmakerServiceDBContext>();
 
             context.Database.MigrateAsync()
                 .GetAwaiter()
