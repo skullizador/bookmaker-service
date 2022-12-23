@@ -9,6 +9,7 @@
 
 namespace BookmakerService.Domain.Configuration
 {
+    using BookmakerService.Domain.AggregateModels.Bookmaker.Builder.BookmakerBuilder;
     using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
@@ -22,6 +23,7 @@ namespace BookmakerService.Domain.Configuration
         /// <param name="services">The services.</param>
         public static void RegisterDomainServices(this IServiceCollection services)
         {
+            services.AddScoped<IBookmakerBuilder, BookmakerBuilder>();
         }
     }
 }
