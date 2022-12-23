@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace ArbitrageFinder.Domain.Exceptions
+namespace BookmakerService.Domain.Exceptions
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

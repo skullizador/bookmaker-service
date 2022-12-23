@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ArbitrageFinderDBContext.cs" company="HumbleBets">
+// <copyright file="BookmakerServiceDBContext.cs" company="HumbleBets">
 //     Copyright (c) HumbleBets. All rights reserved.
 // </copyright>
 // <summary>
-// ArbitrageFinderDBContext
+// BookmakerServiceDBContext
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

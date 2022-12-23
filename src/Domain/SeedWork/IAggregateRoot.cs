@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Odd.cs" company="HumbleBets">
+// <copyright file="IAggregateRoot.cs" company="HumbleBets">
 //     Copyright (c) HumbleBets. All rights reserved.
 // </copyright>
 // <summary>
-// Odd
+// IAggregateRoot
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

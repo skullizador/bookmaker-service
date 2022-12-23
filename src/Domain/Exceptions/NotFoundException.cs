@@ -11,7 +11,6 @@ namespace BookmakerService.Domain.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
-    using ArbitrageFinder.Domain.Exceptions;
 
     /// <summary>
     /// <see cref="NotFoundException"/>

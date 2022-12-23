@@ -38,9 +38,7 @@ namespace BookmakerService.Infrastructure.Repository
         /// Initializes a new instance of the <see cref="GenericRepository{Entity}"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="tenantProvider">The tenant provider.</param>
-        public GenericRepository(
-            BookmakerServiceDBContext context)
+        public GenericRepository(BookmakerServiceDBContext context)
         {
             this.Context = context;
 
