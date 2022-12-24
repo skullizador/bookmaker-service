@@ -1,26 +1,21 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ErrorCode.cs" company="HumbleBets">
+// <copyright file="ITeamRepository.cs" company="HumbleBets">
 //     Copyright (c) HumbleBets. All rights reserved.
 // </copyright>
 // <summary>
-// ErrorCode
+// ITeamRepository
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace BookmakerService.Domain.Exceptions.Enum
-{
-    /// <summary>
-    ///   <see cref="ErrorCode" />
-    /// </summary>
-    public enum ErrorCode
-    {
-        /// <summary>
-        /// The not found
-        /// </summary>
-        NotFound = 201,
 
-        /// <summary>
-        /// The duplicated
-        /// </summary>
-        Duplicated = 202,
+namespace BookmakerService.Domain.AggregateModels.Team.Repository
+{
+    using BookmakerService.Domain.SeedWork;
+
+    /// <summary>
+    /// <see cref="ITeamRepository"/>
+    /// </summary>
+    /// <seealso cref="IRepository{Team}" />
+    public interface ITeamRepository : IRepository<Team>
+    {
     }
 }

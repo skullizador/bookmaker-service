@@ -111,6 +111,7 @@ namespace BookmakerService.Presentation.WebAPI.Exceptions.Middleware
         private void MapExceptionsAndCodes()
         {
             this.exceptionCodes.Add(typeof(NotFoundException), HttpStatusCode.NotFound);
+            this.exceptionCodes.Add(typeof(DuplicatedException), HttpStatusCode.BadRequest);
         }
     }
 }

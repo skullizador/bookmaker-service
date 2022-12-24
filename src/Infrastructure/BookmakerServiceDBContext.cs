@@ -14,6 +14,7 @@ namespace BookmakerService.Infrastructure
     using System.Threading;
     using System.Threading.Tasks;
     using BookmakerService.Domain.SeedWork;
+    using BookmakerService.Infrastructure.EntityConfiguration;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -135,6 +136,10 @@ namespace BookmakerService.Infrastructure
         /// </remarks>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new BookmakerEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new TeamEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new TeamAcronymEntityTypeConfiguration());
+
             var properties = modelBuilder.Model.GetEntityTypes()
                 .SelectMany(t => t.GetProperties())
                 .Where(p => p.ClrType == typeof(decimal) || p.ClrType == typeof(decimal?));

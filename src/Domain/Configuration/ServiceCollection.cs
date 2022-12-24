@@ -10,6 +10,8 @@
 namespace BookmakerService.Domain.Configuration
 {
     using BookmakerService.Domain.AggregateModels.Bookmaker.Builder.BookmakerBuilder;
+    using BookmakerService.Domain.AggregateModels.Team.Builder.TeamAcronymBuilder;
+    using BookmakerService.Domain.AggregateModels.Team.Builder.TeamBuilder;
     using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
@@ -24,6 +26,8 @@ namespace BookmakerService.Domain.Configuration
         public static void RegisterDomainServices(this IServiceCollection services)
         {
             services.AddScoped<IBookmakerBuilder, BookmakerBuilder>();
+            services.AddScoped<ITeamBuilder, TeamBuilder>();
+            services.AddScoped<ITeamAcronymBuilder, TeamAcronymBuilder>();
         }
     }
 }
