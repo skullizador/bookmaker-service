@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NotFoundException.cs" company="HumbleBets">
+// <copyright file="DuplicatedException.cs" company="HumbleBets">
 //     Copyright (c) HumbleBets. All rights reserved.
 // </copyright>
 // <summary>
-// NotFoundException
+// DuplicatedException
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -17,19 +17,19 @@ namespace BookmakerService.Domain.Exceptions
     /// </summary>
     /// <seealso cref="BookmakerServiceException"/>
     [Serializable]
-    public sealed class NotFoundException : BookmakerServiceException
+    public sealed class DuplicatedException : BookmakerServiceException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NotFoundException"/> class.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
-        public NotFoundException(string message)
-            : base(message, (int)Enum.ErrorCode.NotFound)
+        public DuplicatedException(string message)
+            : base(message, (int)Enum.ErrorCode.Duplicated)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NotFoundException"/> class.
+        /// Initializes a new instance of the <see cref="DuplicatedException"/> class.
         /// </summary>
         /// <param name="info">
         /// The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the
@@ -39,7 +39,7 @@ namespace BookmakerService.Domain.Exceptions
         /// The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains
         /// contextual information about the source or destination.
         /// </param>
-        private NotFoundException(SerializationInfo info, StreamingContext context)
+        private DuplicatedException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
