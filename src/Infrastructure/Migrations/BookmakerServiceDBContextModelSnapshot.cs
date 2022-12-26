@@ -33,6 +33,11 @@ namespace BookmakerService.Infrastructure.Migrations
                     b.Property<string>("Comments")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime(6)");
 
