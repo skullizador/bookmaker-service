@@ -36,10 +36,11 @@ namespace BookmakerService.Domain.AggregateModels.Bookmaker.Builder.BookmakerBui
         /// <param name="baseUrl">The base URL.</param>
         /// <param name="comments">The comments.</param>
         /// <param name="description">The description.</param>
+        /// <param name="country">The country.</param>
         /// <returns></returns>
-        public IBookmakerBuilder NewBookmaker(string name, string baseUrl, string comments, string description)
+        public IBookmakerBuilder NewBookmaker(string name, string baseUrl, string comments, string description, string country)
         {
-            bookmaker = new Bookmaker(name, baseUrl, comments, description);
+            bookmaker = new Bookmaker(name, baseUrl, comments, description, country);
 
             return this;
         }

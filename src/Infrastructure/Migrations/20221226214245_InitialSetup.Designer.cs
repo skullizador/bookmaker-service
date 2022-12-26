@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookmakerService.Infrastructure.Migrations
 {
     [DbContext(typeof(BookmakerServiceDBContext))]
-    [Migration("20221224163150_InitialSetup")]
+    [Migration("20221226214245_InitialSetup")]
     partial class InitialSetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,11 @@ namespace BookmakerService.Infrastructure.Migrations
 
                     b.Property<string>("Comments")
                         .HasColumnType("longtext");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime(6)");

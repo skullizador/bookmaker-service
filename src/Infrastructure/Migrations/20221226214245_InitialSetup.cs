@@ -23,6 +23,8 @@ namespace BookmakerService.Infrastructure.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Comments = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Country = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)

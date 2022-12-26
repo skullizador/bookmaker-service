@@ -43,6 +43,10 @@ namespace BookmakerService.Infrastructure.EntityConfiguration
             builder.Property(b => b.Description)
                 .IsRequired()
                 .HasMaxLength(250);
+
+            builder.Property(b => b.Country)
+                .IsRequired()
+                .HasMaxLength(50);
         }
     }
 }
