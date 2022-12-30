@@ -16,3 +16,5 @@ src/Presentation.WebAPI/bin/
 *.bkp
 
 *.dtmp
+
+*.user
