@@ -25,6 +25,8 @@ namespace BookmakerService.Presentation.WebAPI.Mappers
         public MapperProfile()
         {
             this.CreateMap<Bookmaker, BookmakerDetailsDto>();
+
+            this.CreateMap<Bookmaker, BookmakerDto>();
         }
     }
 }
