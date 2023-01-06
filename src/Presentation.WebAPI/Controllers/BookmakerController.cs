@@ -15,6 +15,7 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
     using BookmakerService.Presentation.WebAPI.Command.Bookmaker.CreateBookmakerCommand;
     using BookmakerService.Presentation.WebAPI.Dtos.Input.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Bookmaker;
+    using BookmakerService.Presentation.WebAPI.Queries.Bookmaker.GetAllBookmakersQuery;
     using BookmakerService.Presentation.WebAPI.Utils;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
@@ -71,6 +72,21 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
             }, cancellationToken);
 
             return this.Created(string.Empty, this.mapper.Map<BookmakerDetailsDto>(bookmaker));
+        }
+
+        /// <summary>
+        /// Gets all asynchronous.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<BookmakerDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
+        {
+            IEnumerable<Bookmaker> bookmaker = await this.mediator.Send(new GetAllBookmakersQuery(), cancellationToken);
+
+            return this.Ok(this.mapper.Map<IEnumerable<BookmakerDto>>(bookmaker));
         }
     }
 }
