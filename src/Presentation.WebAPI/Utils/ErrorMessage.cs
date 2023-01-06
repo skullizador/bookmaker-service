@@ -15,6 +15,14 @@ namespace BookmakerService.Presentation.WebAPI.Utils
     public class ErrorMessage
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorMessage"/> class.
+        /// </summary>
+        public ErrorMessage()
+        {
+            this.Message = string.Empty;
+        }
+
+        /// <summary>
         /// Gets or sets the code.
         /// </summary>
         /// <value>The code.</value>
