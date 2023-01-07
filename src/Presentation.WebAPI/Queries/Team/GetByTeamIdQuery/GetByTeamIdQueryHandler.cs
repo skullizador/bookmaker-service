@@ -10,6 +10,7 @@
 namespace BookmakerService.Presentation.WebAPI.Queries.Team.GetByTeamIdQuery
 {
     using BookmakerService.Domain.AggregateModels.Team.Repository;
+    using BookmakerService.Domain.Exceptions;
     using Domain.AggregateModels.Team;
     using MediatR;
 
@@ -39,9 +40,17 @@ namespace BookmakerService.Presentation.WebAPI.Queries.Team.GetByTeamIdQuery
         /// <param name="request">The request</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Response from the request</returns>
+        /// <exception cref="NotFoundException">The team with id {request.TeamId} wasn't found.</exception>
         public async Task<Team> Handle(GetByTeamIdQuery request, CancellationToken cancellationToken)
         {
-            return await this.teamRepository.GetAsync(request.TeamId, cancellationToken);
+            Team team = await this.teamRepository.GetAsync(request.TeamId, cancellationToken);
+
+            if (team is null)
+            {
+                throw new NotFoundException($"The team with id {request.TeamId} wasn't found.");
+            }
+
+            return team;
         }
     }
 }

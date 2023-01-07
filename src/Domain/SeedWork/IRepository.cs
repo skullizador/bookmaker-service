@@ -24,9 +24,7 @@ namespace BookmakerService.Domain.SeedWork
         /// <summary>
         /// Gets the unit of work.
         /// </summary>
-        /// <value>
-        /// The unit of work.
-        /// </value>
+        /// <value>The unit of work.</value>
         IUnitOfWork UnitOfWork { get; }
 
         /// <summary>
@@ -64,14 +62,16 @@ namespace BookmakerService.Domain.SeedWork
         /// Removes the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
+        /// <param name="token">The token.</param>
         /// <returns></returns>
-        Task<bool> Remove(TEntity entity);
+        Task<bool> Remove(TEntity entity, CancellationToken token);
 
         /// <summary>
         /// Updates the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
+        /// <param name="token">The token.</param>
         /// <returns></returns>
-        Task<TEntity> Update(TEntity entity);
+        Task<TEntity> Update(TEntity entity, CancellationToken token);
     }
 }

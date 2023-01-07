@@ -11,6 +11,7 @@ namespace BookmakerService.Presentation.WebAPI.Queries.Team.GetTeamAcronymByTeam
 {
     using BookmakerService.Domain.AggregateModels.Team;
     using BookmakerService.Domain.AggregateModels.Team.Repository;
+    using BookmakerService.Domain.Exceptions;
     using MediatR;
 
     /// <summary>
@@ -39,9 +40,15 @@ namespace BookmakerService.Presentation.WebAPI.Queries.Team.GetTeamAcronymByTeam
         /// <param name="request">The request</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Response from the request</returns>
+        /// <exception cref="NotFoundException">The team with id {request.TeamId} wasn't found.</exception>
         public async Task<IEnumerable<TeamAcronym>> Handle(GetTeamAcronymByTeamIdQuery request, CancellationToken cancellationToken)
         {
             Team team = await this.teamRepository.GetAsync(request.TeamId, cancellationToken);
+
+            if (team is null)
+            {
+                throw new NotFoundException($"The team with id {request.TeamId} wasn't found.");
+            }
 
             return team.Acronyms;
         }
