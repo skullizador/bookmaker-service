@@ -12,6 +12,7 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
     using System.Net;
     using AutoMapper;
     using BookmakerService.Domain.AggregateModels.Team;
+    using BookmakerService.Presentation.WebAPI.Command.Team.DeleteTeamCommand;
     using BookmakerService.Presentation.WebAPI.Dtos.Input.Team;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Team;
     using BookmakerService.Presentation.WebAPI.Queries.Team.GetAllTeamsQuery;
@@ -49,6 +50,26 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
         {
             this.mediator = mediator;
             this.mapper = mapper;
+        }
+
+        /// <summary>
+        /// Deletes the team asynchronous.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpDelete("{TeamId}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteTeamAsync([FromRoute] GetByTeamIdDto filters, CancellationToken cancellationToken)
+        {
+            await this.mediator.Send(new DeleteTeamCommand
+            {
+                TeamId = filters.TeamId
+            }, cancellationToken);
+
+            return this.Ok();
         }
 
         /// <summary>
