@@ -31,6 +31,10 @@ namespace BookmakerService.Presentation.WebAPI.Mappers
             this.CreateMap<Bookmaker, BookmakerDto>();
 
             this.CreateMap<Team, TeamDto>();
+
+            this.CreateMap<Team, TeamDetailsDto>();
+
+            this.CreateMap<TeamAcronym, TeamAcronymDetailsDto>();
         }
     }
 }

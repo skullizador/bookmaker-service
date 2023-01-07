@@ -12,8 +12,10 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
     using System.Net;
     using AutoMapper;
     using BookmakerService.Domain.AggregateModels.Team;
+    using BookmakerService.Presentation.WebAPI.Dtos.Input.Team;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Team;
     using BookmakerService.Presentation.WebAPI.Queries.Team.GetAllTeamsQuery;
+    using BookmakerService.Presentation.WebAPI.Queries.Team.GetByTeamIdQuery;
     using BookmakerService.Presentation.WebAPI.Utils;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
@@ -62,6 +64,26 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
             IEnumerable<Team> teams = await this.mediator.Send(new GetAllTeamsQuery(), cancellationToken);
 
             return this.Ok(this.mapper.Map<IEnumerable<TeamDto>>(teams));
+        }
+
+        /// <summary>
+        /// Gets the team details asynchronous.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpGet("{TeamId}")]
+        [ProducesResponseType(typeof(TeamDetailsDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetTeamDetailsAsync([FromRoute] GetByTeamIdDto filters, CancellationToken cancellationToken)
+        {
+            Team team = await this.mediator.Send(new GetByTeamIdQuery
+            {
+                TeamId = filters.TeamId
+            }, cancellationToken);
+
+            return this.Ok(this.mapper.Map<TeamDetailsDto>(team));
         }
     }
 }
