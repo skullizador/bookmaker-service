@@ -9,21 +9,22 @@
 
 namespace BookmakerService.Presentation.WebAPI.Controllers
 {
-    using System.Net;
     using AutoMapper;
     using BookmakerService.Domain.AggregateModels.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Command.Bookmaker.CreateBookmakerCommand;
     using BookmakerService.Presentation.WebAPI.Dtos.Input.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Queries.Bookmaker.GetAllBookmakersQuery;
+    using BookmakerService.Presentation.WebAPI.Queries.Bookmaker.GetByBookmakerIdQuery;
     using BookmakerService.Presentation.WebAPI.Utils;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
+    using System.Net;
 
     /// <summary>
     /// <see cref="BookmakerController"/>
     /// </summary>
-    /// <seealso cref="Controller" />
+    /// <seealso cref="Controller"/>
     [ApiController]
     [Route("api/v1/Bookmaker")]
     public class BookmakerController : Controller
@@ -87,6 +88,26 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
             IEnumerable<Bookmaker> bookmaker = await this.mediator.Send(new GetAllBookmakersQuery(), cancellationToken);
 
             return this.Ok(this.mapper.Map<IEnumerable<BookmakerDto>>(bookmaker));
+        }
+
+        /// <summary>
+        /// Gets the by bookmaker identifier asynchronous.
+        /// </summary>
+        /// <param name="filter">The filter.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpGet("{bookmakerId}")]
+        [ProducesResponseType(typeof(BookmakerDetailsDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetByBookmakerIdAsync([FromRoute] GetByBookmakerIdDto filter, CancellationToken cancellationToken)
+        {
+            Bookmaker bookmaker = await this.mediator.Send(new GetByBookmakerIdQuery
+            {
+                BookmakerId = filter.BookmakerId
+            }, cancellationToken);
+
+            return this.Ok(this.mapper.Map<BookmakerDetailsDto>(bookmaker));
         }
     }
 }
