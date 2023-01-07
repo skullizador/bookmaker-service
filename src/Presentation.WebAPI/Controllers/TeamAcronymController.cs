@@ -12,7 +12,9 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
     using System.Net;
     using AutoMapper;
     using BookmakerService.Domain.AggregateModels.Team;
+    using BookmakerService.Presentation.WebAPI.Command.TeamAcronym.DeleteTeamAcronymCommand;
     using BookmakerService.Presentation.WebAPI.Dtos.Input.Team;
+    using BookmakerService.Presentation.WebAPI.Dtos.Input.TeamAcronym;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Team;
     using BookmakerService.Presentation.WebAPI.Queries.Team.GetTeamAcronymByTeamIdQuery;
     using BookmakerService.Presentation.WebAPI.Utils;
@@ -48,6 +50,26 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
         {
             this.mediator = mediator;
             this.mapper = mapper;
+        }
+
+        /// <summary>
+        /// Deletes the team acronym asynchronous.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpDelete("{TeamAcronymId}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteTeamAcronymAsync([FromRoute] GetByTeamAcronymIdDto filters, CancellationToken cancellationToken)
+        {
+            await this.mediator.Publish(new DeleteTeamAcronymCommand
+            {
+                TeamAcronymId = filters.TeamAcronymId,
+            }, cancellationToken);
+
+            return this.Ok();
         }
 
         /// <summary>
