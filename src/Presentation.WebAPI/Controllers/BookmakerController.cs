@@ -9,6 +9,7 @@
 
 namespace BookmakerService.Presentation.WebAPI.Controllers
 {
+    using System.Net;
     using AutoMapper;
     using BookmakerService.Domain.AggregateModels.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Command.Bookmaker.CreateBookmakerCommand;
@@ -19,7 +20,6 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
     using BookmakerService.Presentation.WebAPI.Utils;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
-    using System.Net;
 
     /// <summary>
     /// <see cref="BookmakerController"/>
@@ -96,7 +96,7 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
         /// <param name="filter">The filter.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns></returns>
-        [HttpGet("{bookmakerId}")]
+        [HttpGet("{BookmakerId}")]
         [ProducesResponseType(typeof(BookmakerDetailsDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
