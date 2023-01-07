@@ -11,6 +11,11 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
 {
     using System.Net;
     using AutoMapper;
+    using BookmakerService.Domain.AggregateModels.Team;
+    using BookmakerService.Presentation.WebAPI.Dtos.Input.Team;
+    using BookmakerService.Presentation.WebAPI.Dtos.Output.Team;
+    using BookmakerService.Presentation.WebAPI.Queries.Team.GetTeamAcronymByTeamIdQuery;
+    using BookmakerService.Presentation.WebAPI.Utils;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
 
@@ -45,14 +50,23 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
             this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Gets the team acronyms by team identifier asynchronous.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<TeamDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<TeamAcronymDetailsDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> GetTeamAcronymsByTeamIdAsync([FromQuery] , CancellationToken cancellationToken)
+        public async Task<IActionResult> GetTeamAcronymsByTeamIdAsync([FromQuery] GetByTeamIdDto filters, CancellationToken cancellationToken)
         {
-            var teams = await this.mediator.Send(new GetAllTeamsQuery(), cancellationToken);
-            var teamDtos = this.mapper.Map<IEnumerable<TeamDto>>(teams);
-            return this.Ok(teamDtos);
+            IEnumerable<TeamAcronym> acronyms = await this.mediator.Send(new GetTeamAcronymByTeamIdQuery
+            {
+                TeamId = filters.TeamId
+            }, cancellationToken);
+
+            return this.Ok(this.mapper.Map<IEnumerable<TeamAcronymDetailsDto>>(acronyms));
         }
     }
 }
