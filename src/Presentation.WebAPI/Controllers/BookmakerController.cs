@@ -88,7 +88,7 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteBookmakerAsync([FromRoute] GetByBookmakerIdDto filter, CancellationToken cancellationToken)
         {
-            await this.mediator.Send(new DeleteBookmakerCommand
+            await this.mediator.Publish(new DeleteBookmakerCommand
             {
                 BookmakerId = filter.BookmakerId
             }, cancellationToken);
