@@ -17,8 +17,8 @@ namespace BookmakerService.Domain.AggregateModels.Team
     /// <summary>
     /// <see cref="Team"/>
     /// </summary>
-    /// <seealso cref="EntityBase" />
-    /// <seealso cref="IAggregateRoot" />
+    /// <seealso cref="EntityBase"/>
+    /// <seealso cref="IAggregateRoot"/>
     public class Team : EntityBase, IAggregateRoot
     {
         /// <summary>
@@ -49,25 +49,19 @@ namespace BookmakerService.Domain.AggregateModels.Team
         /// <summary>
         /// Gets the acronyms.
         /// </summary>
-        /// <value>
-        /// The acronyms.
-        /// </value>
+        /// <value>The acronyms.</value>
         public virtual IReadOnlyCollection<TeamAcronym> Acronyms => this.acronyms;
 
         /// <summary>
         /// Gets the name.
         /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
+        /// <value>The name.</value>
         public string Name { get; private set; }
 
         /// <summary>
         /// Gets the short name.
         /// </summary>
-        /// <value>
-        /// The short name.
-        /// </value>
+        /// <value>The short name.</value>
         public string ShortName { get; private set; }
 
         /// <summary>
@@ -75,8 +69,10 @@ namespace BookmakerService.Domain.AggregateModels.Team
         /// </summary>
         /// <param name="acronym">The acronym.</param>
         /// <exception cref="ArgumentNullException">The Acronym is null.</exception>
-        /// <exception cref="DuplicatedException">The Acronym {acronym} already exists in team {this.Name}.</exception>
-        internal void AddAcronym(TeamAcronym acronym)
+        /// <exception cref="DuplicatedException">
+        /// The Acronym {acronym} already exists in team {this.Name}.
+        /// </exception>
+        public void AddAcronym(TeamAcronym acronym)
         {
             if (acronym == null)
             {

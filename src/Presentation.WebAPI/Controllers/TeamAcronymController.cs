@@ -12,9 +12,9 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
     using System.Net;
     using AutoMapper;
     using BookmakerService.Domain.AggregateModels.Team;
-    using BookmakerService.Presentation.WebAPI.Command.TeamAcronym.DeleteTeamAcronymCommand;
+    using BookmakerService.Presentation.WebAPI.Command.Team.CreateTeamAcronymCommand;
+    using BookmakerService.Presentation.WebAPI.Command.Team.DeleteTeamAcronymCommand;
     using BookmakerService.Presentation.WebAPI.Dtos.Input.Team;
-    using BookmakerService.Presentation.WebAPI.Dtos.Input.TeamAcronym;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Team;
     using BookmakerService.Presentation.WebAPI.Queries.Team.GetTeamAcronymByTeamIdQuery;
     using BookmakerService.Presentation.WebAPI.Utils;
@@ -53,6 +53,31 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
         }
 
         /// <summary>
+        /// Adds the acronym to team asynchronous.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <param name="createAcronymDto">The create acronym dto.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(typeof(TeamAcronymDetailsDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> AddAcronymToTeamAsync(
+            [FromQuery] GetByTeamIdDto filters,
+            [FromBody] CreateTeamAcronymDto createAcronymDto,
+            CancellationToken cancellationToken)
+        {
+            TeamAcronym acronym = await this.mediator.Send(new CreateTeamAcronymCommand
+            {
+                TeamId = filters.TeamId,
+                Acronym = createAcronymDto.Acronym,
+            }, cancellationToken);
+
+            return this.Ok(this.mapper.Map<TeamAcronymDetailsDto>(acronym));
+        }
+
+        /// <summary>
         /// Deletes the team acronym asynchronous.
         /// </summary>
         /// <param name="filters">The filters.</param>
@@ -81,6 +106,7 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<TeamAcronymDetailsDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetTeamAcronymsByTeamIdAsync([FromQuery] GetByTeamIdDto filters, CancellationToken cancellationToken)
         {
             IEnumerable<TeamAcronym> acronyms = await this.mediator.Send(new GetTeamAcronymByTeamIdQuery

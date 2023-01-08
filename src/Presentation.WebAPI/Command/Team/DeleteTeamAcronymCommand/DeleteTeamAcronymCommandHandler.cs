@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace BookmakerService.Presentation.WebAPI.Command.TeamAcronym.DeleteTeamAcronymCommand
+namespace BookmakerService.Presentation.WebAPI.Command.Team.DeleteTeamAcronymCommand
 {
     using BookmakerService.Domain.AggregateModels.Team.Repository;
     using BookmakerService.Domain.Exceptions;
@@ -43,16 +43,16 @@ namespace BookmakerService.Presentation.WebAPI.Command.TeamAcronym.DeleteTeamAcr
         /// </exception>
         public async Task Handle(DeleteTeamAcronymCommand notification, CancellationToken cancellationToken)
         {
-            var teamAcronym = await this.teamAcronymRepository.GetAsync(notification.TeamAcronymId, cancellationToken);
+            var teamAcronym = await teamAcronymRepository.GetAsync(notification.TeamAcronymId, cancellationToken);
 
             if (teamAcronym is null)
             {
                 throw new NotFoundException($"The team acronym with id {notification.TeamAcronymId} wasn't found.");
             }
 
-            await this.teamAcronymRepository.Remove(teamAcronym, cancellationToken);
+            await teamAcronymRepository.Remove(teamAcronym, cancellationToken);
 
-            await this.teamAcronymRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
+            await teamAcronymRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
         }
     }
 }
