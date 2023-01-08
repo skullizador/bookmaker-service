@@ -99,8 +99,9 @@ namespace BookmakerService.Infrastructure.Repository
         /// Removes the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
+        /// <param name="token">The token.</param>
         /// <returns></returns>
-        public async Task<bool> Remove(Entity entity)
+        public async Task<bool> Remove(Entity entity, CancellationToken token)
         {
             await Task.FromResult(this.Entities.Remove(entity));
 
@@ -111,8 +112,9 @@ namespace BookmakerService.Infrastructure.Repository
         /// Updates the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
+        /// <param name="token">The token.</param>
         /// <returns></returns>
-        public async Task<Entity> Update(Entity entity)
+        public async Task<Entity> Update(Entity entity, CancellationToken token)
         {
             var dataEntity = await Task.FromResult(this.Entities.Update(entity));
 

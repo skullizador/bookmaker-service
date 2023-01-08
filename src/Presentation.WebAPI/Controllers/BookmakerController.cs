@@ -13,6 +13,7 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
     using AutoMapper;
     using BookmakerService.Domain.AggregateModels.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Command.Bookmaker.CreateBookmakerCommand;
+    using BookmakerService.Presentation.WebAPI.Command.Bookmaker.DeleteBookmakerCommand;
     using BookmakerService.Presentation.WebAPI.Dtos.Input.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Queries.Bookmaker.GetAllBookmakersQuery;
@@ -73,6 +74,26 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
             }, cancellationToken);
 
             return this.Created(string.Empty, this.mapper.Map<BookmakerDetailsDto>(bookmaker));
+        }
+
+        /// <summary>
+        /// Deletes the bookmaker asynchronous.
+        /// </summary>
+        /// <param name="filter">The filter.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpDelete("{BookmakerId}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteBookmakerAsync([FromRoute] GetByBookmakerIdDto filter, CancellationToken cancellationToken)
+        {
+            await this.mediator.Publish(new DeleteBookmakerCommand
+            {
+                BookmakerId = filter.BookmakerId
+            }, cancellationToken);
+
+            return this.Ok();
         }
 
         /// <summary>
