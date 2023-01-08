@@ -12,6 +12,7 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
     using System.Net;
     using AutoMapper;
     using BookmakerService.Domain.AggregateModels.Team;
+    using BookmakerService.Presentation.WebAPI.Command.Team.CreateTeamCommand;
     using BookmakerService.Presentation.WebAPI.Command.Team.DeleteTeamCommand;
     using BookmakerService.Presentation.WebAPI.Dtos.Input.Team;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Team;
@@ -70,6 +71,26 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
             }, cancellationToken);
 
             return this.Ok();
+        }
+
+        /// <summary>
+        /// Creates the team asynchronous.
+        /// </summary>
+        /// <param name="createTeamDto">The create team dto.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(typeof(TeamDetailsDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> CreateTeamAsync([FromBody] CreateTeamDto createTeamDto, CancellationToken cancellationToken)
+        {
+            Team team = await this.mediator.Send(new CreateTeamCommand
+            {
+                Name = createTeamDto.Name,
+                ShortName = createTeamDto.ShortName,
+            }, cancellationToken);
+
+            return this.Ok(this.mapper.Map<TeamDetailsDto>(team));
         }
 
         /// <summary>

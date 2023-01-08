@@ -9,14 +9,17 @@
 
 namespace BookmakerService.Infrastructure.Repository
 {
+    using System.Threading;
+    using System.Threading.Tasks;
     using BookmakerService.Domain.AggregateModels.Team;
     using BookmakerService.Domain.AggregateModels.Team.Repository;
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// <see cref="TeamRepository"/>
     /// </summary>
-    /// <seealso cref="GenericRepository{Team}" />
-    /// <seealso cref="ITeamRepository" />
+    /// <seealso cref="GenericRepository{Team}"/>
+    /// <seealso cref="ITeamRepository"/>
     internal class TeamRepository : GenericRepository<Team>, ITeamRepository
     {
         /// <summary>
@@ -26,6 +29,17 @@ namespace BookmakerService.Infrastructure.Repository
         public TeamRepository(BookmakerServiceDBContext context)
             : base(context)
         {
+        }
+
+        /// <summary>
+        /// Gets the by name asynchronous.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        public async Task<Team> GetByNameAsync(string name, CancellationToken cancellationToken)
+        {
+            return await this.Entities.SingleOrDefaultAsync(t => t.Name == name, cancellationToken);
         }
     }
 }
