@@ -14,6 +14,7 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
     using BookmakerService.Domain.AggregateModels.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Command.Bookmaker.CreateBookmakerCommand;
     using BookmakerService.Presentation.WebAPI.Command.Bookmaker.DeleteBookmakerCommand;
+    using BookmakerService.Presentation.WebAPI.Command.Bookmaker.UpdateBookmakerCommand;
     using BookmakerService.Presentation.WebAPI.Dtos.Input.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Bookmaker;
     using BookmakerService.Presentation.WebAPI.Queries.Bookmaker.GetAllBookmakersQuery;
@@ -126,6 +127,35 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
             Bookmaker bookmaker = await this.mediator.Send(new GetByBookmakerIdQuery
             {
                 BookmakerId = filter.BookmakerId
+            }, cancellationToken);
+
+            return this.Ok(this.mapper.Map<BookmakerDetailsDto>(bookmaker));
+        }
+
+        /// <summary>
+        /// Updates the bookmaker asynchronous.
+        /// </summary>
+        /// <param name="filter">The filter.</param>
+        /// <param name="updateBookmakerDto">The update bookmaker dto.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpPut("{BookmakerId}")]
+        [ProducesResponseType(typeof(BookmakerDetailsDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> UpdateBookmakerAsync(
+            [FromQuery] GetByBookmakerIdDto filter,
+            [FromBody] UpdateBookmakerDto updateBookmakerDto,
+            CancellationToken cancellationToken)
+        {
+            Bookmaker bookmaker = await this.mediator.Send(new UpdateBookmakerCommand
+            {
+                BookmakerId = filter.BookmakerId,
+                BaseUrl = updateBookmakerDto.BaseUrl,
+                Comments = updateBookmakerDto.Comments,
+                Country = updateBookmakerDto.Country,
+                Description = updateBookmakerDto.Description,
+                Name = updateBookmakerDto.Name
             }, cancellationToken);
 
             return this.Ok(this.mapper.Map<BookmakerDetailsDto>(bookmaker));
