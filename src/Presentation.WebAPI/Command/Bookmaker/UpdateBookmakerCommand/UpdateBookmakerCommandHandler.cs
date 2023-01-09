@@ -14,8 +14,10 @@ namespace BookmakerService.Presentation.WebAPI.Command.Bookmaker.UpdateBookmaker
     using Domain.AggregateModels.Bookmaker;
     using MediatR;
 
-    /// <summary> <see cref="UpdateBookmakerCommandHandler"/> </summary> <seealso
-    /// cref=IRequestHandler{UpdateBookmakerCommand, Bookmaker}" />
+    /// <summary>
+    /// <see cref="UpdateBookmakerCommandHandler"/>
+    /// </summary>
+    /// <seealso cref="IRequestHandler{UpdateBookmakerCommand, Bookmaker}"/>
     public class UpdateBookmakerCommandHandler : IRequestHandler<UpdateBookmakerCommand, Bookmaker>
     {
         /// <summary>
