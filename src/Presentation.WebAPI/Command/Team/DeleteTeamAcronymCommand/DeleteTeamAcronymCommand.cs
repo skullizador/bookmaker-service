@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace BookmakerService.Presentation.WebAPI.Command.TeamAcronym.DeleteTeamAcronymCommand
+namespace BookmakerService.Presentation.WebAPI.Command.Team.DeleteTeamAcronymCommand
 {
     using MediatR;
 

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace BookmakerService.Presentation.WebAPI.Dtos.Input.TeamAcronym
+namespace BookmakerService.Presentation.WebAPI.Dtos.Input.Team
 {
     /// <summary>
     /// <see cref="GetByTeamAcronymIdDto"/>
