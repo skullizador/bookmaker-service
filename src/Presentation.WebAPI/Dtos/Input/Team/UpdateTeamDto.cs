@@ -27,12 +27,12 @@ namespace BookmakerService.Presentation.WebAPI.Dtos.Input.Team
         /// Gets or sets the name.
         /// </summary>
         /// <value>The name.</value>
-        public string Name { get; set; }
+        public string Name { get; init; }
 
         /// <summary>
         /// Gets or sets the short name.
         /// </summary>
         /// <value>The short name.</value>
-        public string ShortName { get; set; }
+        public string ShortName { get; init; }
     }
 }
