@@ -43,16 +43,16 @@ namespace BookmakerService.Presentation.WebAPI.Command.Team.DeleteTeamAcronymCom
         /// </exception>
         public async Task Handle(DeleteTeamAcronymCommand notification, CancellationToken cancellationToken)
         {
-            var teamAcronym = await teamAcronymRepository.GetAsync(notification.TeamAcronymId, cancellationToken);
+            var teamAcronym = await this.teamAcronymRepository.GetAsync(notification.TeamAcronymId, cancellationToken);
 
             if (teamAcronym is null)
             {
                 throw new NotFoundException($"The team acronym with id {notification.TeamAcronymId} wasn't found.");
             }
 
-            await teamAcronymRepository.Remove(teamAcronym, cancellationToken);
+            await this.teamAcronymRepository.Remove(teamAcronym, cancellationToken);
 
-            await teamAcronymRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
+            await this.teamAcronymRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
         }
     }
 }

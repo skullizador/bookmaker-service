@@ -52,9 +52,7 @@ namespace BookmakerService.Presentation.WebAPI.Command.Team.CreateTeamAcronymCom
         /// <param name="request">The request</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Response from the request</returns>
-        /// <exception cref="BookmakerService.Domain.Exceptions.NotFoundException">
-        /// The team with id {request.TeamId} wasn't found.
-        /// </exception>
+        /// <exception cref="NotFoundException">The team with id {request.TeamId} wasn't found.</exception>
         public async Task<TeamAcronym> Handle(CreateTeamAcronymCommand request, CancellationToken cancellationToken)
         {
             Team team = await this.teamRepository.GetAsync(request.TeamId, cancellationToken);
