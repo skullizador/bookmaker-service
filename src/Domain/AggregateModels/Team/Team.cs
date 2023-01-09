@@ -88,12 +88,39 @@ namespace BookmakerService.Domain.AggregateModels.Team
         }
 
         /// <summary>
+        /// Updates the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="shortName">The short name.</param>
+        public void Update(string name, string shortName)
+        {
+            this.Name = ValidateValue(name);
+            this.ShortName = ValidateValue(shortName);
+        }
+
+        /// <summary>
         /// Gets the atomic values.
         /// </summary>
         /// <returns></returns>
         protected override IEnumerable<object> GetAtomicValues()
         {
             yield return this.UUId;
+        }
+
+        /// <summary>
+        /// Validates the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">value - The value cannot be null or empty.</exception>
+        private static string ValidateValue(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentNullException(nameof(value), "The value cannot be null or empty.");
+            }
+
+            return value;
         }
 
         /// <summary>
