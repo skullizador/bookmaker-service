@@ -14,6 +14,7 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
     using BookmakerService.Domain.AggregateModels.Team;
     using BookmakerService.Presentation.WebAPI.Command.Team.CreateTeamCommand;
     using BookmakerService.Presentation.WebAPI.Command.Team.DeleteTeamCommand;
+    using BookmakerService.Presentation.WebAPI.Command.Team.UpdateTeamCommand;
     using BookmakerService.Presentation.WebAPI.Dtos.Input.Team;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Team;
     using BookmakerService.Presentation.WebAPI.Queries.Team.GetAllTeamsQuery;
@@ -54,26 +55,6 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Deletes the team asynchronous.
-        /// </summary>
-        /// <param name="filters">The filters.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns></returns>
-        [HttpDelete("{TeamId}")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> DeleteTeamAsync([FromRoute] GetByTeamIdDto filters, CancellationToken cancellationToken)
-        {
-            await this.mediator.Publish(new DeleteTeamCommand
-            {
-                TeamId = filters.TeamId
-            }, cancellationToken);
-
-            return this.Ok();
-        }
-
-        /// <summary>
         /// Creates the team asynchronous.
         /// </summary>
         /// <param name="createTeamDto">The create team dto.</param>
@@ -91,6 +72,26 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
             }, cancellationToken);
 
             return this.Ok(this.mapper.Map<TeamDetailsDto>(team));
+        }
+
+        /// <summary>
+        /// Deletes the team asynchronous.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpDelete("{TeamId}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteTeamAsync([FromRoute] GetByTeamIdDto filters, CancellationToken cancellationToken)
+        {
+            await this.mediator.Publish(new DeleteTeamCommand
+            {
+                TeamId = filters.TeamId
+            }, cancellationToken);
+
+            return this.Ok();
         }
 
         /// <summary>
@@ -123,6 +124,32 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
             Team team = await this.mediator.Send(new GetByTeamIdQuery
             {
                 TeamId = filters.TeamId
+            }, cancellationToken);
+
+            return this.Ok(this.mapper.Map<TeamDetailsDto>(team));
+        }
+
+        /// <summary>
+        /// Updates the team asynchronous.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <param name="updateTeamDto">The update team dto.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        [HttpPut("{TeamId}")]
+        [ProducesResponseType(typeof(TeamDetailsDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> UpdateTeamAsync(
+            [FromRoute] GetByTeamIdDto filters,
+            [FromBody] UpdateTeamDto updateTeamDto,
+            CancellationToken cancellationToken)
+        {
+            Team team = await this.mediator.Send(new UpdateTeamCommand
+            {
+                TeamId = filters.TeamId,
+                Name = updateTeamDto.Name,
+                ShortName = updateTeamDto.ShortName,
             }, cancellationToken);
 
             return this.Ok(this.mapper.Map<TeamDetailsDto>(team));

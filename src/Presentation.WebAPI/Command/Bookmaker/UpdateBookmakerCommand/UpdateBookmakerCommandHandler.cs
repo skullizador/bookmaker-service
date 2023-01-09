@@ -45,9 +45,9 @@ namespace BookmakerService.Presentation.WebAPI.Command.Bookmaker.UpdateBookmaker
         /// </exception>
         public async Task<Bookmaker> Handle(UpdateBookmakerCommand request, CancellationToken cancellationToken)
         {
-            var bookmaker = await this.bookmakerRepository.GetAsync(request.BookmakerId, cancellationToken);
+            Bookmaker bookmaker = await this.bookmakerRepository.GetAsync(request.BookmakerId, cancellationToken);
 
-            if (bookmaker == null)
+            if (bookmaker is null)
             {
                 throw new NotFoundException($"The bookmaker with id {request.BookmakerId} wasn't found.");
             }

@@ -144,7 +144,7 @@ namespace BookmakerService.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ErrorMessage), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> UpdateBookmakerAsync(
-            [FromQuery] GetByBookmakerIdDto filter,
+            [FromRoute] GetByBookmakerIdDto filter,
             [FromBody] UpdateBookmakerDto updateBookmakerDto,
             CancellationToken cancellationToken)
         {

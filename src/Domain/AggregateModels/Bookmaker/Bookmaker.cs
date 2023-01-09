@@ -106,10 +106,15 @@ namespace BookmakerService.Domain.AggregateModels.Bookmaker
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">value - Value cannot be null or empty.</exception>
         private static string ValidateValue(string value)
         {
-            return !string.IsNullOrEmpty(value) ? value
-                : throw new ArgumentNullException(nameof(value), "Value cannot be null or empty.");
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentNullException(nameof(value), "The value cannot be null or empty.");
+            }
+
+            return value;
         }
     }
 }
