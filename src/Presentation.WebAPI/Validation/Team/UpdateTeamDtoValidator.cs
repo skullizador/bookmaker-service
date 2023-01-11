@@ -25,15 +25,11 @@ namespace BookmakerService.Presentation.WebAPI.Validation.Team
         {
             this.RuleFor(x => x.Name)
                 .NotEmpty()
-                    .WithMessage("The Name shouldn't be empty.")
-                .NotNull()
-                    .WithMessage("The Name shouldn't be null.");
+                    .WithMessage("The Name shouldn't be empty.");
 
             this.RuleFor(x => x.ShortName)
                 .NotEmpty()
-                    .WithMessage("The Short Name shouldn't be empty.")
-                .NotNull()
-                    .WithMessage("The Short Name shouldn't be null.");
+                    .WithMessage("The Short Name shouldn't be empty.");
         }
     }
 }

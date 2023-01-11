@@ -87,7 +87,7 @@ namespace BookmakerService.Domain.AggregateModels.Bookmaker
         {
             this.Name = ValidateValue(name);
             this.BaseUrl = ValidateValue(baseUrl);
-            this.Comments = ValidateValue(comments);
+            this.Comments = comments;
             this.Description = ValidateValue(description);
             this.Country = ValidateValue(country);
         }
