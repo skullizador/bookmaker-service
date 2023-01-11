@@ -25,31 +25,19 @@ namespace BookmakerService.Presentation.WebAPI.Validation.Bookmaker
         {
             this.RuleFor(x => x.BaseUrl)
                 .NotEmpty()
-                    .WithMessage("The Base URL shouldn't be empty.")
-                .NotNull()
-                    .WithMessage("The Base URL shouldn't be null.");
+                    .WithMessage("The Base URL shouldn't be empty.");
 
             this.RuleFor(x => x.Country)
                 .NotEmpty()
-                    .WithMessage("The Country shouldn't be empty.")
-                .NotNull()
-                    .WithMessage("The Country shouldn't be null.");
+                    .WithMessage("The Country shouldn't be empty.");
 
             this.RuleFor(x => x.Description)
                 .NotEmpty()
-                    .WithMessage("The Description shouldn't be empty.")
-                .NotNull()
-                    .WithMessage("The Description shouldn't be null.");
+                    .WithMessage("The Description shouldn't be empty.");
 
             this.RuleFor(x => x.Name)
                 .NotEmpty()
-                    .WithMessage("The Name shouldn't be empty.")
-                .NotNull()
-                    .WithMessage("The Name shouldn't be null.");
-
-            this.RuleFor(x => x.Comments)
-                .NotEmpty()
-                    .WithMessage("The Comments shouldn't be empty.");
+                    .WithMessage("The Name shouldn't be empty.");
         }
     }
 }
