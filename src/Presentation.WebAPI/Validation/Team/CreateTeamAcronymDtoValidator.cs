@@ -26,8 +26,8 @@ namespace BookmakerService.Presentation.WebAPI.Validation.Team
             this.RuleFor(x => x.Acronym)
                 .NotEmpty()
                     .WithMessage("The Acronym shouldn't be empty.")
-                .MaximumLength(10)
-                    .WithMessage("The Acronym shouldn't be longer than 10 characters.");
+                .MaximumLength(20)
+                    .WithMessage("The Acronym shouldn't be longer than 20 characters.");
         }
     }
 }
