@@ -27,7 +27,6 @@ namespace BookmakerService.Presentation.WebAPI.Command.Bookmaker.CreateBookmaker
             this.Country = string.Empty;
             this.Description = string.Empty;
             this.Name = string.Empty;
-            this.Comments = string.Empty;
         }
 
         /// <summary>
@@ -40,7 +39,7 @@ namespace BookmakerService.Presentation.WebAPI.Command.Bookmaker.CreateBookmaker
         /// Gets the comments.
         /// </summary>
         /// <value>The comments.</value>
-        public string Comments { get; init; }
+        public string? Comments { get; init; }
 
         /// <summary>
         /// Gets the country.
