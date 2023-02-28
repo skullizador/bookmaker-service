@@ -18,11 +18,11 @@
 ## Features
 
 Available features for bookmakers:
-* [x] Create new bookmaker;
-* [x] Delete bookmaker;
-* [x] Get bookmaker information;
-* [x] Update bookmaker;
-* [x] Get all bookmakers;
+:heavy_check_mark: Create new bookmaker;
+:heavy_check_mark: Delete bookmaker;
+:heavy_check_mark: Get bookmaker information;
+:heavy_check_mark: Update bookmaker;
+:heavy_check_mark: Get all bookmakers;
 
 Available features for teams:
 * [x] Create new team;
