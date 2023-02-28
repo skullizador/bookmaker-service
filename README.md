@@ -18,21 +18,21 @@
 ## Features
 
 Available features for bookmakers:
-:heavy_check_mark: Create new bookmaker;
-:heavy_check_mark: Delete bookmaker;
-:heavy_check_mark: Get bookmaker information;
-:heavy_check_mark: Update bookmaker;
-:heavy_check_mark: Get all bookmakers;
+* Create new bookmaker :heavy_check_mark:
+* Delete bookmaker :heavy_check_mark:
+* Get bookmaker information :heavy_check_mark:
+* Update bookmaker :heavy_check_mark:
+* Get all bookmakers :heavy_check_mark:
 
 Available features for teams:
-* [x] Create new team;
-* [x] Delete team;
-* [x] Update team;
-* [x] Get team information;
-* [x] Get all teams;
-* [x] Add new acronym to team;
-* [x] Delete team's acronym;
-* [x] Get team's acronyms;
+* Create new team :heavy_check_mark:
+* Delete team :heavy_check_mark:
+* Update team :heavy_check_mark:
+* Get team information :heavy_check_mark:
+* Get all teams :heavy_check_mark:
+* Add new acronym to team :heavy_check_mark:
+* Delete team's acronym :heavy_check_mark:
+* Get team's acronyms :heavy_check_mark:
 
 ## Requirements
 The application can be run locally or in a docker container, the requirements for each setup are listed below.
