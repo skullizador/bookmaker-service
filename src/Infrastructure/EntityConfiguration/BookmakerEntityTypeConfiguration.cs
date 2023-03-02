@@ -130,10 +130,7 @@ namespace BookmakerService.Infrastructure.EntityConfiguration
 
             bookmaker.Update(name, baseUrl, comments, description, country);
 
-            bookmaker.Id = id;
-            bookmaker.UUId = bookmakerId;
-            bookmaker.CreationDate = DateTime.Now;
-            bookmaker.ModificationDate = DateTime.Now;
+            bookmaker.UpdateEntityBase(DateTime.Now, DateTime.Now, bookmakerId, id);
 
             return bookmaker;
         }
