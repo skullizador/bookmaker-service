@@ -60,9 +60,7 @@ namespace BookmakerService.Domain.SeedWork
         /// <summary>
         /// Gets or sets the uu identifier.
         /// </summary>
-        /// <value>
-        /// The uu identifier.
-        /// </value>
+        /// <value>The uu identifier.</value>
         public Guid UUId { get; set; }
 
         /// <summary>
@@ -115,5 +113,20 @@ namespace BookmakerService.Domain.SeedWork
         /// </summary>
         /// <returns><c>true</c> if this instance is transient; otherwise, <c>false</c>.</returns>
         public bool IsTransient() => this.Id == default(Int32);
+
+        /// <summary>
+        /// Updates the entity base.
+        /// </summary>
+        /// <param name="creationDate">The creation date.</param>
+        /// <param name="modificationDate">The modification date.</param>
+        /// <param name="uuid">The UUID.</param>
+        /// <param name="id">The identifier.</param>
+        public void UpdateEntityBase(DateTime creationDate, DateTime modificationDate, Guid uuid, long id)
+        {
+            this.CreationDate = creationDate;
+            this.ModificationDate = modificationDate;
+            this.UUId = uuid;
+            this.Id = id;
+        }
     }
 }

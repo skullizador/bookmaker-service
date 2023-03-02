@@ -64,6 +64,92 @@ namespace BookmakerService.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Bookmaker", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BaseUrl = "https://www.betano.pt/",
+                            Comments = "",
+                            Country = "Portugal",
+                            CreationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7597),
+                            Description = "Casa de apostas portuguesa Betano.",
+                            ModificationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7705),
+                            Name = "Betano",
+                            UUId = new Guid("749e2e24-9b1b-4210-ae6d-4275d12c41f7")
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            BaseUrl = "https://www.betclic.pt/",
+                            Comments = "",
+                            Country = "Portugal",
+                            CreationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7721),
+                            Description = "Casa de apostas portuguesa Betclic",
+                            ModificationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7725),
+                            Name = "Betclic",
+                            UUId = new Guid("ae32838d-2820-4c64-b73b-6bd04c497ec2")
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            BaseUrl = "https://www.estorilsolcasinos.pt/pt",
+                            Comments = "",
+                            Country = "Portugal",
+                            CreationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7737),
+                            Description = "Casa de apostas portuguesa ESC Online",
+                            ModificationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7741),
+                            Name = "ESC Online",
+                            UUId = new Guid("6521ef65-1c7e-4c35-944d-c864ac16fda6")
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            BaseUrl = "https://apostas.solverde.pt/home",
+                            Comments = "",
+                            Country = "Portugal",
+                            CreationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7755),
+                            Description = "Casa de apostas portuguesa SolVerde",
+                            ModificationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7758),
+                            Name = "SolVerde",
+                            UUId = new Guid("64a3706f-ba1b-4797-8638-963032550786")
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            BaseUrl = "https://www.placard.pt/apostas",
+                            Comments = "",
+                            Country = "Portugal",
+                            CreationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7801),
+                            Description = "Casa de apostas portuguesa Placard",
+                            ModificationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7805),
+                            Name = "Placard",
+                            UUId = new Guid("5088765d-b7cf-4752-95d8-d479a8ca554d")
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            BaseUrl = "https://www.casinoportugal.pt/",
+                            Comments = "",
+                            Country = "Portugal",
+                            CreationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7815),
+                            Description = "Casa de apostas portuguesa Casino Portugal",
+                            ModificationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7819),
+                            Name = "Casino Portugal",
+                            UUId = new Guid("29ec9761-132a-43b2-a541-198196bae977")
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            BaseUrl = "https://sports.bwin.pt/pt/sports",
+                            Comments = "",
+                            Country = "Portugal",
+                            CreationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7826),
+                            Description = "Casa de apostas portuguesa Bwin",
+                            ModificationDate = new DateTime(2023, 3, 1, 23, 34, 8, 334, DateTimeKind.Local).AddTicks(7830),
+                            Name = "Bwin",
+                            UUId = new Guid("03cd7fc5-79ef-4655-b02b-a1ecddae75e1")
+                        });
                 });
 
             modelBuilder.Entity("BookmakerService.Domain.AggregateModels.Team.Team", b =>

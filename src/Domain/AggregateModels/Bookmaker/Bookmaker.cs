@@ -23,6 +23,13 @@ namespace BookmakerService.Domain.AggregateModels.Bookmaker
         /// <summary>
         /// Initializes a new instance of the <see cref="Bookmaker"/> class.
         /// </summary>
+        public Bookmaker()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Bookmaker"/> class.
+        /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="baseUrl">The base URL.</param>
         /// <param name="comments">The comments.</param>
@@ -36,13 +43,6 @@ namespace BookmakerService.Domain.AggregateModels.Bookmaker
             this.Comments = comments;
             this.Description = description;
             this.Country = country;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Bookmaker"/> class.
-        /// </summary>
-        protected Bookmaker()
-        {
         }
 
         /// <summary>
