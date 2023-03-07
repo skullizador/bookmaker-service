@@ -17,7 +17,6 @@ namespace BookmakerService.Presentation.WebAPI
     using BookmakerService.Presentation.WebAPI.Exceptions.Middleware;
     using BookmakerService.Presentation.WebAPI.Validation;
     using FluentValidation.AspNetCore;
-    using MediatR;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.OpenApi.Models;
@@ -105,7 +104,10 @@ namespace BookmakerService.Presentation.WebAPI
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddMediatR(typeof(Startup));
+            services.AddMediatR(opt =>
+            {
+                opt.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            });
 
             services.AddSwaggerGenNewtonsoftSupport();
 
