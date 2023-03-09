@@ -10,7 +10,6 @@
 namespace BookmakerService.Infrastructure.Configuration
 {
     using BookmakerService.Domain.AggregateModels.Bookmaker.Repository;
-    using BookmakerService.Domain.AggregateModels.Team.Repository;
     using BookmakerService.Infrastructure.Repository;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -26,8 +25,6 @@ namespace BookmakerService.Infrastructure.Configuration
         public static void RegisterInfrastructureServices(this IServiceCollection services)
         {
             services.AddScoped<IBookmakerRepository, BookmakerRepository>();
-            services.AddScoped<ITeamRepository, TeamRepository>();
-            services.AddScoped<ITeamAcronymRepository, TeamAcronymRepository>();
         }
     }
 }

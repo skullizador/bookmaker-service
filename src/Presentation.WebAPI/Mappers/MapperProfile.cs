@@ -11,9 +11,7 @@ namespace BookmakerService.Presentation.WebAPI.Mappers
 {
     using AutoMapper;
     using BookmakerService.Domain.AggregateModels.Bookmaker;
-    using BookmakerService.Domain.AggregateModels.Team;
     using BookmakerService.Presentation.WebAPI.Dtos.Output.Bookmaker;
-    using BookmakerService.Presentation.WebAPI.Dtos.Output.Team;
 
     /// <summary>
     /// <see cref="MapperProfile"/>
@@ -29,12 +27,6 @@ namespace BookmakerService.Presentation.WebAPI.Mappers
             this.CreateMap<Bookmaker, BookmakerDetailsDto>();
 
             this.CreateMap<Bookmaker, BookmakerDto>();
-
-            this.CreateMap<Team, TeamDto>();
-
-            this.CreateMap<Team, TeamDetailsDto>();
-
-            this.CreateMap<TeamAcronym, TeamAcronymDetailsDto>();
         }
     }
 }
