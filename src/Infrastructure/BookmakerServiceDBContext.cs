@@ -137,8 +137,6 @@ namespace BookmakerService.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new BookmakerEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new TeamEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new TeamAcronymEntityTypeConfiguration());
 
             var properties = modelBuilder.Model.GetEntityTypes()
                 .SelectMany(t => t.GetProperties())
